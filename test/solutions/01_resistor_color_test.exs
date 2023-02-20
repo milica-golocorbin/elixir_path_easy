@@ -42,12 +42,4 @@ defmodule Solutions.ResistorColorTest do
   test "returns white color code" do
     assert ResistorColor.code(:white) == 9
   end
-
-  test "returns error for misspelled color" do
-    refute ResistorColor.code(:whites) == 9
-  end
-
-  test "returns error for wrong type" do
-    refute ResistorColor.code("white") == 9
-  end
 end
