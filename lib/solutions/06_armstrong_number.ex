@@ -11,6 +11,7 @@ defmodule Solutions.ArmstrongNumber do
     number ==
       Enum.map(numbers_list, fn number -> Integer.pow(number, exponent) end)
       |> Enum.sum()
-      |> IO.inspect()
+
+    # |> IO.inspect()
   end
 end
