@@ -49,31 +49,18 @@ defmodule Solutions.ProteinTranslation do
   end
 
   @doc """
-  Given a codon, return the corresponding protein
-  
-  UGU -> Cysteine
-  UGC -> Cysteine
-  UUA -> Leucine
-  UUG -> Leucine
-  AUG -> Methionine
-  UUU -> Phenylalanine
-  UUC -> Phenylalanine
-  UCU -> Serine
-  UCC -> Serine
-  UCA -> Serine
-  UCG -> Serine
-  UGG -> Tryptophan
-  UAU -> Tyrosine
-  UAC -> Tyrosine
-  UAA -> STOP
-  UAG -> STOP
-  UGA -> STOP
+  Given a codon, return the corresponding protein from @codons
   """
   @spec of_codon(String.t()) :: {:ok, String.t()} | {:error, String.t()}
   def of_codon(codon) do
-    case Enum.find_value(@codons, fn {match, protein} -> if codon == match, do: protein end) do
+    case Enum.find(@codons, fn {match, _protein} -> codon == match end) do
       nil -> {:error, "invalid codon"}
-      protein -> {:ok, protein}
+      {_codon, protein} -> {:ok, protein}
     end
+
+    # case Enum.find_value(@codons, fn {match, protein} -> if codon == match, do: protein end) do
+    #   nil -> {:error, "invalid codon"}
+    #   protein -> {:ok, protein}
+    # end
   end
 end
